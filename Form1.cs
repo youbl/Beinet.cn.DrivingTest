@@ -153,9 +153,12 @@ namespace Beinet.cn.DrivingTest
             int type;
             using(var sr = new StreamReader(filename, enc))
             {
+                string line = sr.ReadLine();
+                if (line == null)
+                    return;
                 //清空题目数组并重新填充
                 arrIdx.Clear();
-                var allQues = sr.ReadLine().Split(new[]{','}, StringSplitOptions.RemoveEmptyEntries);// 所有题目
+                var allQues = line.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);// 所有题目
                 foreach (var que in allQues)
                 {
                     arrIdx.Add(int.Parse(que));
@@ -163,7 +166,10 @@ namespace Beinet.cn.DrivingTest
                 answeringNum = arrIdx.Count;
 
                 // 设置类型
-                type = int.Parse(sr.ReadLine());// 回答类型，1为测验，2为随机答题，3为顺序答题
+                line = sr.ReadLine();
+                if (line == null)
+                    return;
+                type = int.Parse(line);// 回答类型，1为测验，2为随机答题，3为顺序答题
                 if (type == 1) 
                     isTest = true;
                 else if (type == 2) 
@@ -173,7 +179,10 @@ namespace Beinet.cn.DrivingTest
                 arrErr.Clear();
                 while (!sr.EndOfStream)
                 {
-                    var content = sr.ReadLine().Split(',');//题号,回答,是否正确
+                    line = sr.ReadLine();
+                    if (line == null)
+                        return;
+                    var content = line.Split(',');//题号,回答,是否正确
                     var errQues = int.Parse(content[0]);
                     if(content[2] != "True")
                     {
@@ -320,6 +329,8 @@ namespace Beinet.cn.DrivingTest
         string GetListText(string logfilename)
         {
             logfilename = Path.GetFileName(logfilename);
+            if (logfilename == null)
+                return null;
             if(!regHis.IsMatch(logfilename))
                 return null;
             logfilename = logfilename.Substring(0, logfilename.Length - 4);
@@ -385,7 +396,7 @@ namespace Beinet.cn.DrivingTest
 
             textBox1.Text = string.Format("{0}", currentAnsDesc);
 
-            var obj = sender as RadioButton;
+            var obj = (RadioButton)sender;
             var myans = int.Parse(obj.Name.Substring(3));
             var right = GetIdx(currentAnswer, currentIsOption);
             bool isright;
@@ -584,6 +595,8 @@ namespace Beinet.cn.DrivingTest
             }
             else
             {
+                rad1.Text = "对";
+                rad2.Text = "错";
                 currentIsOption = false;
                 rad3.Visible = false;
                 rad4.Visible = false;
@@ -607,314 +620,6 @@ namespace Beinet.cn.DrivingTest
         }
         #endregion
 
-        #endregion
-
-
-        #region 抓取考试题目的代码,已注释
-        /*
-        private CookieContainer _cookie;
-        private const string _starturl = "http://wz.jxedt.com/test/201004abcd/201004-sxtest.asp?type=c";
-        private const string _quesurl =
-            "http://wz.jxedt.com/test/201004abcd/Ask.asp?myTotal=725&ltype=c&myID={0}&myOrder={0}";
-
-        /// <summary>
-        /// 匹配图片的正则
-        /// </summary>
-        private Regex regImg = new Regex(@"<img\s[^>]*src=""([^""']+)""[^>]*>", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-
-        /// <summary>
-        /// 匹配全部
-        /// </summary>
-        Regex regQues = new Regex(@"<span>\d+.</span>([\s\S]+)<input type=""hidden"" name=""TrueRe"" value=""(\d+)"">[\s\S]+?(?:<div class=""image"">([\s\S]+)</div>\s+)?<ul class=""Item"">\s+((?:<li><input\s[^>]*>[\s\S]+?</li>\s*)+)</ul>[\s\S]+<div class=""showmsg"">([\s\S]+?)</div>", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-        /// <summary>
-        /// 匹配答案选项
-        /// </summary>
-        Regex regOp = new Regex(@"<li><input\s[^>]*>([\s\S]+?)</li>", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-
-        private List<string> answerOpn;
-        public Form1()
-        {
-            InitializeComponent();
-            bool isok;
-            // 得到Cookie
-            GetPage(_starturl, out isok, ref _cookie, encoding: enc);
-            for (int i = 1; i <= quesNum; i++)
-            {
-                var url = string.Format(_quesurl, i);
-                var html = GetPage(url, out isok, ref _cookie, encoding: enc);
-                if (!isok)
-                {
-                    textBox1.Text = html;
-                    return;
-                }
-                Match m = regQues.Match(html);
-                if (!m.Success)
-                {
-                    textBox1.Text = html;
-                    return;
-                }
-                bool isimgok;
-                var quesimg = string.Empty;             // 问题图片列表
-
-                var title = m.Result("$1");             // 问题
-                // 问题包括图片时，下载
-                var tmp = DownImgs(title, out isimgok);
-                if (!isimgok)
-                {
-                    textBox1.Text = tmp + "\r\n" + html;
-                    return;
-                }
-                title = regImg.Replace(title, m1 => { var tt = m1.Result("$1");
-                                                        tt = "[[" + tt.Substring(tt.LastIndexOf('/') + 1) + "]]";
-                                                        return tt;
-                });
-                quesimg += tmp;
-
-                var rightAnswer = m.Result("$2");       // 答案序号
-
-                // 包括图片时，下载
-                var allimg = m.Result("$3");
-                tmp = DownImgs(allimg, out isimgok);
-                if (!isimgok)
-                {
-                    textBox1.Text = tmp + "\r\n" + html;
-                    return;
-                }
-                quesimg += tmp;
-
-                answerOpn = new List<string>();
-                var allopn = m.Result("$4");            // 答案选项
-                var mOpn = regOp.Match(allopn);
-                if(!mOpn.Success)
-                {
-                    textBox1.Text = html;
-                    return;
-                }
-                while (mOpn.Success)
-                {
-                    answerOpn.Add(mOpn.Result("$1"));
-                    mOpn = mOpn.NextMatch();
-                }
-
-                var rightAnswerDesc = m.Result("$5");   // 答案简要说明
-
-                var file = string.Format(fileName, i + ".txt");
-                using (var sw = new StreamWriter(file, false, enc))
-                {
-                    sw.WriteLine(title);            // 问题
-                    sw.WriteLine(split);
-                    sw.WriteLine(quesimg);          // 问题图片列表，以逗号分隔
-                    sw.WriteLine(split);
-                    sw.WriteLine(rightAnswer);      // 答案序号
-                    sw.WriteLine(split);
-                    sw.WriteLine(rightAnswerDesc);  // 答案简要说明
-
-                    foreach (var opn in answerOpn)
-                    {
-                        sw.WriteLine(split);
-                        sw.WriteLine(opn);  // 答案选项
-                    }
-                }
-            }
-        }
-
-        string DownImgs(string str, out bool isok)
-        {
-            string ret = string.Empty;
-            if (!string.IsNullOrEmpty(str))
-            {
-                Match mImg = regImg.Match(str);
-                while (mImg.Success)
-                {
-                    var src = mImg.Result("$1");
-                    if (!src.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
-                    {
-                        isok = false;
-                        return src;
-                    }
-                    var imgname = src.Substring(src.LastIndexOf('/') + 1);
-                    var imgfile = string.Format(fileName, imgname);
-                    if(!File.Exists(imgfile))
-                        DownloadFile(src, imgfile, ref _cookie);
-                    ret += imgname + ",";
-                    mImg = mImg.NextMatch();
-                }
-            }
-            isok = true;
-            return ret;
-        }
-
-
-        /// <summary>
-        /// 抓取页面
-        /// </summary>
-        /// <param name="url">要抓取的网址</param>
-        /// <param name="isok">抓取结果，成功还是失败</param>
-        /// <param name="cookieContainer">要使用的cookie</param>
-        /// <param name="param">参数</param>
-        /// <param name="HttpMethod">GET POST</param>
-        /// <param name="encoding">编码格式，默认UTF-8</param>
-        /// <param name="showHeader">返回内容是否包括头信息</param>
-        /// <param name="userName">网页登录名</param>
-        /// <param name="password">登录密码</param>
-        /// <returns></returns>
-        static string GetPage(string url, out bool isok, ref CookieContainer cookieContainer, 
-            string param = null, string HttpMethod = null, 
-            Encoding encoding = null,
-            bool showHeader = false, string userName = null, string password = null)
-        {
-            isok = true;
-
-            bool isGet = (string.IsNullOrEmpty(HttpMethod) ||
-                          HttpMethod.Equals("GET", StringComparison.OrdinalIgnoreCase));
-
-            #region Get方式，且有参数时，把参数拼接到Url后面
-            if (isGet && !string.IsNullOrEmpty(param))
-            {
-                // 删除网址后面的#号
-                if (url.IndexOf("#") >= 0)
-                    url = url.Substring(0, url.IndexOf("#"));
-
-                if (url.IndexOf("?") < 0)
-                {
-                    url += "?" + param;
-                }
-                else
-                {
-                    url += "&" + param;
-                }
-            }
-            #endregion
-
-            // 访问Https网站时，加上特殊处理，用于处理证书有问题的网站
-            if (url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
-                ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
-
-            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-            if (!string.IsNullOrEmpty(userName) || !string.IsNullOrEmpty(password))
-                request.Credentials = new NetworkCredential(userName, password);
-
-            #region 加Cookie
-            if (cookieContainer == null)
-                cookieContainer = new CookieContainer();
-            request.CookieContainer = cookieContainer;
-            //            request.CookieContainer.SetCookies(new Uri(url), "aaa=bbb&ccc=ddd");// 必须一次全部加入Cookie
-            #endregion
-
-            //request.Referer = url;
-            request.AllowAutoRedirect = false; //禁止自动转向，静态化目标页面发生转向是因为出了异常
-            request.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; SV1;)";
-            //request.KeepAlive = true;
-            //request.Timeout = 100000;   // 设置超时时间，默认值为 100,000 毫秒（100 秒）。 
-            //request.Accept = "image/gif, image/jpeg, image/pjpeg, image/pjpeg, application/x-shockwave-flash, application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/x-ms-application, application/x-ms-xbap, application/vnd.ms-xpsdocument, application/xaml+xml, * /*";
-            request.Headers.Add("Accept-Encoding", "gzip, deflate");
-            request.Accept = "* /*";
-            request.Headers.Add("Accept-Language", "zh-cn");
-
-            if (isGet)
-            {
-                request.Method = "GET";
-                //request.ContentType = "text/html";
-            }
-            else
-            {
-                request.Method = "POST";
-                request.ContentType = "application/x-www-form-urlencoded";
-
-                // 设置提交的数据
-                if (!string.IsNullOrEmpty(param))
-                {
-                    request.ContentLength = param.Length;
-                    Stream newStream = request.GetRequestStream();
-                    // 把数据转换为字节数组
-                    byte[] l_data = encoding.GetBytes(param);
-                    newStream.Write(l_data, 0, l_data.Length);
-                    newStream.Close();
-                }
-            }
-
-            HttpWebResponse response;
-            try
-            {
-                response = request.GetResponse() as HttpWebResponse;
-            }
-            catch (Exception exp)
-            {
-                isok = false;
-                return "返回错误：" + exp;
-            }
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                Stream stream;
-                using (stream = response.GetResponseStream())
-                {
-                    if (response.ContentEncoding.ToLower().Contains("gzip"))
-                    {
-                        stream = new GZipStream(stream, CompressionMode.Decompress);
-                    }
-                    else if (response.ContentEncoding.ToLower().Contains("deflate"))
-                    {
-                        stream = new DeflateStream(stream, CompressionMode.Decompress);
-                    }
-                    using (StreamReader sr = new StreamReader(stream, encoding))
-                    {
-                        string html = sr.ReadToEnd();
-                        if (showHeader)
-                            html = "请求头信息：\r\n" + request.Headers + "\r\n\r\n响应头信息：\r\n" + response.Headers + "\r\n" + html;
-                        return html;
-                    }
-                }
-            }
-            return "远程服务器返回代码不为200," +
-                   response.StatusCode + "," + response.StatusDescription;
-        }
-        /// <summary>
-        /// 用于访问Https站点时，证书有问题，始终返回true
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="certificate"></param>
-        /// <param name="chain"></param>
-        /// <param name="errors"></param>
-        /// <returns></returns>
-        public static bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
-        {
-            // Always accept
-            //Console.WriteLine("accept" + certificate.GetName());
-            return true; //总是接受
-        }
-
-        /// <summary>
-        /// 下载文件
-        /// </summary>
-        /// <param name="downloadUrl"></param>
-        /// <param name="savePath"></param>
-        /// <param name="cookieContainer"></param>
-        public void DownloadFile(string downloadUrl, string savePath, ref CookieContainer cookieContainer)
-        {
-            HttpWebRequest request = WebRequest.Create(downloadUrl) as HttpWebRequest;
-            request.AllowAutoRedirect = true;
-            request.CookieContainer = cookieContainer;
-            byte[] buffer = new byte[1000000];
-            using (var response = request.GetResponse())
-            using (var stream = new FileStream(savePath, 
-                FileMode.CreateNew, FileAccess.Write, FileShare.None))
-            using (var responseStream = response.GetResponseStream())
-            {
-                long s = stream.Length, l = response.ContentLength;
-                int read;
-                while (s < l && (read = responseStream.Read(buffer, 0, buffer.Length)) != 0)
-                {
-                    stream.Write(buffer, 0, read);
-                    stream.Flush();
-                    s += read;
-                    //var percent = (s*100/(decimal) l).ToString("N");
-                    //OperationLabelMethod(labProcess, "下载进度：" + percent + "% " + "点这里取消");
-                }
-                responseStream.Close();
-                //OperationLabelMethod(labProcess, null); // 隐藏进度
-            }
-        }
-        */
         #endregion
     }
 }

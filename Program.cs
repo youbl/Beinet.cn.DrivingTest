@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using DrivingTest;
 
 namespace Beinet.cn.DrivingTest
 {
@@ -15,6 +16,11 @@ namespace Beinet.cn.DrivingTest
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            
+            // 启动题目抓取程序
+            //Application.Run(new GetQuestion());
+
+            // 启动考试程序
             Application.Run(new Form1());
         }
     }
