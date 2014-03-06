@@ -78,6 +78,7 @@
             this.gpAnswer.Location = new System.Drawing.Point(12, 59);
             this.gpAnswer.Name = "gpAnswer";
             this.gpAnswer.Size = new System.Drawing.Size(380, 156);
+            this.gpAnswer.TabIndex = 27;
             this.gpAnswer.TabStop = false;
             this.gpAnswer.Text = "答案选项";
             // 
@@ -127,60 +128,77 @@
             this.labSer.Location = new System.Drawing.Point(12, 8);
             this.labSer.Name = "labSer";
             this.labSer.Size = new System.Drawing.Size(29, 12);
+            this.labSer.TabIndex = 26;
             this.labSer.Text = "725.";
             // 
             // labRight
             // 
+            this.labRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labRight.AutoSize = true;
-            this.labRight.Location = new System.Drawing.Point(50, 224);
+            this.labRight.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labRight.ForeColor = System.Drawing.Color.Red;
+            this.labRight.Location = new System.Drawing.Point(35, 224);
             this.labRight.Name = "labRight";
-            this.labRight.Size = new System.Drawing.Size(23, 12);
+            this.labRight.Size = new System.Drawing.Size(26, 12);
+            this.labRight.TabIndex = 25;
             this.labRight.Text = "725";
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 224);
+            this.label1.Location = new System.Drawing.Point(4, 224);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 23;
             this.label1.Text = "正确：";
             // 
             // labErr
             // 
+            this.labErr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labErr.AutoSize = true;
-            this.labErr.Location = new System.Drawing.Point(125, 224);
+            this.labErr.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labErr.ForeColor = System.Drawing.Color.Red;
+            this.labErr.Location = new System.Drawing.Point(35, 245);
             this.labErr.Name = "labErr";
-            this.labErr.Size = new System.Drawing.Size(23, 12);
+            this.labErr.Size = new System.Drawing.Size(26, 12);
+            this.labErr.TabIndex = 24;
             this.labErr.Text = "725";
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(85, 224);
+            this.label3.Location = new System.Drawing.Point(4, 245);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.TabIndex = 20;
             this.label3.Text = "错误：";
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 248);
+            this.label2.Location = new System.Drawing.Point(41, 317);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.TabIndex = 21;
             this.label2.Text = "答案说明：";
             // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.textBox1.Location = new System.Drawing.Point(71, 248);
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.textBox1.Location = new System.Drawing.Point(106, 248);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.textBox1.Size = new System.Drawing.Size(618, 83);
+            this.textBox1.Size = new System.Drawing.Size(603, 83);
             this.textBox1.TabIndex = 10;
             // 
             // btnRandom
             // 
+            this.btnRandom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRandom.Location = new System.Drawing.Point(327, 337);
             this.btnRandom.Name = "btnRandom";
             this.btnRandom.Size = new System.Drawing.Size(119, 32);
@@ -191,9 +209,10 @@
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(398, 192);
+            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNext.Location = new System.Drawing.Point(332, 219);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(85, 23);
+            this.btnNext.Size = new System.Drawing.Size(60, 23);
             this.btnNext.TabIndex = 0;
             this.btnNext.Text = "下一题";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -201,13 +220,15 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(398, 61);
+            this.pictureBox1.Location = new System.Drawing.Point(398, 48);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(103, 82);
+            this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
             // button2
             // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button2.Location = new System.Drawing.Point(178, 337);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(130, 32);
@@ -218,41 +239,52 @@
             // 
             // labPer
             // 
+            this.labPer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labPer.AutoSize = true;
-            this.labPer.Location = new System.Drawing.Point(210, 224);
+            this.labPer.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labPer.ForeColor = System.Drawing.Color.Red;
+            this.labPer.Location = new System.Drawing.Point(46, 266);
             this.labPer.Name = "labPer";
-            this.labPer.Size = new System.Drawing.Size(41, 12);
+            this.labPer.Size = new System.Drawing.Size(47, 12);
+            this.labPer.TabIndex = 22;
             this.labPer.Text = "100.0%";
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(156, 224);
+            this.label5.Location = new System.Drawing.Point(4, 266);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
+            this.label5.TabIndex = 17;
             this.label5.Text = "正确率：";
             // 
             // chkAutoNext
             // 
+            this.chkAutoNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkAutoNext.AutoSize = true;
             this.chkAutoNext.Checked = true;
             this.chkAutoNext.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAutoNext.Location = new System.Drawing.Point(490, 196);
+            this.chkAutoNext.Location = new System.Drawing.Point(209, 223);
             this.chkAutoNext.Name = "chkAutoNext";
-            this.chkAutoNext.Size = new System.Drawing.Size(144, 16);
+            this.chkAutoNext.Size = new System.Drawing.Size(120, 16);
+            this.chkAutoNext.TabIndex = 8;
             this.chkAutoNext.TabStop = false;
-            this.chkAutoNext.Text = "正确时自动进入下一题";
+            this.chkAutoNext.Text = "正确时自动下一题";
             this.chkAutoNext.UseVisualStyleBackColor = true;
             // 
             // txtQuestion
             // 
-            this.txtQuestion.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.txtQuestion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtQuestion.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtQuestion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtQuestion.Location = new System.Drawing.Point(37, 9);
             this.txtQuestion.Multiline = true;
             this.txtQuestion.Name = "txtQuestion";
             this.txtQuestion.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.txtQuestion.Size = new System.Drawing.Size(652, 46);
+            this.txtQuestion.Size = new System.Drawing.Size(763, 46);
+            this.txtQuestion.TabIndex = 13;
             this.txtQuestion.TabStop = false;
             this.txtQuestion.Text = "显示问题";
             // 
@@ -264,22 +296,27 @@
             // 
             // labTime
             // 
+            this.labTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labTime.AutoSize = true;
-            this.labTime.Location = new System.Drawing.Point(393, 224);
+            this.labTime.Location = new System.Drawing.Point(168, 224);
             this.labTime.Name = "labTime";
             this.labTime.Size = new System.Drawing.Size(35, 12);
+            this.labTime.TabIndex = 6;
             this.labTime.Text = "00:00";
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(356, 224);
+            this.label6.Location = new System.Drawing.Point(136, 224);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 12);
+            this.label6.TabIndex = 16;
             this.label6.Text = "计时：";
             // 
             // btnErr
             // 
+            this.btnErr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnErr.Location = new System.Drawing.Point(670, 337);
             this.btnErr.Name = "btnErr";
             this.btnErr.Size = new System.Drawing.Size(130, 32);
@@ -290,22 +327,29 @@
             // 
             // labLeft
             // 
+            this.labLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labLeft.AutoSize = true;
-            this.labLeft.Location = new System.Drawing.Point(318, 224);
+            this.labLeft.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labLeft.ForeColor = System.Drawing.Color.Red;
+            this.labLeft.Location = new System.Drawing.Point(59, 287);
             this.labLeft.Name = "labLeft";
-            this.labLeft.Size = new System.Drawing.Size(23, 12);
+            this.labLeft.Size = new System.Drawing.Size(26, 12);
+            this.labLeft.TabIndex = 7;
             this.labLeft.Text = "725";
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(260, 224);
+            this.label7.Location = new System.Drawing.Point(5, 287);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 12);
+            this.label7.TabIndex = 14;
             this.label7.Text = "剩余题数：";
             // 
             // txtBegin
             // 
+            this.txtBegin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtBegin.Location = new System.Drawing.Point(71, 348);
             this.txtBegin.Name = "txtBegin";
             this.txtBegin.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -315,6 +359,7 @@
             // 
             // txtEnd
             // 
+            this.txtEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtEnd.Location = new System.Drawing.Point(130, 348);
             this.txtEnd.Name = "txtEnd";
             this.txtEnd.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -324,22 +369,27 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(11, 351);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 12);
+            this.label4.TabIndex = 19;
             this.label4.Text = "答题区间：";
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(112, 351);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(17, 12);
+            this.label8.TabIndex = 18;
             this.label8.Text = "到";
             // 
             // btnTest
             // 
+            this.btnTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnTest.Location = new System.Drawing.Point(490, 337);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(133, 32);
@@ -350,26 +400,32 @@
             // 
             // lstHis
             // 
+            this.lstHis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lstHis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.lstHis.FormattingEnabled = true;
             this.lstHis.Location = new System.Drawing.Point(652, 221);
             this.lstHis.Name = "lstHis";
             this.lstHis.Size = new System.Drawing.Size(159, 20);
+            this.lstHis.TabIndex = 0;
             this.lstHis.TabStop = false;
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(591, 224);
+            this.label9.Location = new System.Drawing.Point(618, 225);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 12);
-            this.label9.Text = "历史记录：";
+            this.label9.Size = new System.Drawing.Size(41, 12);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "历史：";
             // 
             // btnHisLoad
             // 
+            this.btnHisLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnHisLoad.Location = new System.Drawing.Point(715, 248);
             this.btnHisLoad.Name = "btnHisLoad";
             this.btnHisLoad.Size = new System.Drawing.Size(85, 23);
+            this.btnHisLoad.TabIndex = 12;
             this.btnHisLoad.TabStop = false;
             this.btnHisLoad.Text = "加载历史";
             this.btnHisLoad.UseVisualStyleBackColor = true;
@@ -377,9 +433,11 @@
             // 
             // btnHisDel
             // 
+            this.btnHisDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnHisDel.Location = new System.Drawing.Point(715, 277);
             this.btnHisDel.Name = "btnHisDel";
             this.btnHisDel.Size = new System.Drawing.Size(85, 23);
+            this.btnHisDel.TabIndex = 11;
             this.btnHisDel.TabStop = false;
             this.btnHisDel.Text = "删除历史";
             this.btnHisDel.UseVisualStyleBackColor = true;
@@ -387,9 +445,11 @@
             // 
             // btnHisClear
             // 
+            this.btnHisClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnHisClear.Location = new System.Drawing.Point(715, 306);
             this.btnHisClear.Name = "btnHisClear";
             this.btnHisClear.Size = new System.Drawing.Size(85, 23);
+            this.btnHisClear.TabIndex = 10;
             this.btnHisClear.TabStop = false;
             this.btnHisClear.Text = "清空全部历史";
             this.btnHisClear.UseVisualStyleBackColor = true;
@@ -400,13 +460,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 372);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.labTime);
+            this.Controls.Add(this.labLeft);
+            this.Controls.Add(this.labPer);
+            this.Controls.Add(this.labErr);
+            this.Controls.Add(this.labRight);
             this.Controls.Add(this.lstHis);
             this.Controls.Add(this.txtEnd);
             this.Controls.Add(this.txtBegin);
-            this.Controls.Add(this.labTime);
-            this.Controls.Add(this.labLeft);
             this.Controls.Add(this.chkAutoNext);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnHisClear);
             this.Controls.Add(this.btnHisDel);
             this.Controls.Add(this.btnHisLoad);
@@ -418,19 +481,16 @@
             this.Controls.Add(this.txtQuestion);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.labPer);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.labErr);
-            this.Controls.Add(this.labRight);
             this.Controls.Add(this.labSer);
             this.Controls.Add(this.gpAnswer);
+            this.Controls.Add(this.label9);
             this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "驾考科目一考题";

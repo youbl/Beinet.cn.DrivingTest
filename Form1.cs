@@ -33,7 +33,8 @@ namespace Beinet.cn.DrivingTest
         readonly string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"jk\{0}");//@"e:\jk\{0}";
         readonly string dirHistory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"history");
         private const string split = "======================";
-        private const int quesNum = 725;    // 题目总数
+        public const int quesNum = 973;// 725;    // 题目总数,含大型车的是2540题
+
         private int answeringNum;           // 保存要回答的题目数（比如回答1~100,这个值就是100）
         Encoding enc = Encoding.GetEncoding("GB2312");
         /// <summary>

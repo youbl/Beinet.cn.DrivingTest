@@ -10,6 +10,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Beinet.cn.DrivingTest;
 
 namespace DrivingTest
 {
@@ -31,7 +32,7 @@ namespace DrivingTest
 
 
         Encoding enc = Encoding.GetEncoding("GB2312");
-        private const int quesNum = 973;// 725;    // 题目总数,含大型车的是2540题
+        private const int quesNum = Form1.quesNum;
 
         public GetQuestion()
         {
