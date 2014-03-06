@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Text;
@@ -58,6 +59,8 @@ namespace Beinet.cn.DrivingTest
         /// 当前回答的题目的索引
         /// </summary>
         private int currentIdx = 1;
+
+        private string currentPic = string.Empty;
         /// <summary>
         /// 当前题目的正确答案
         /// </summary>
@@ -163,6 +166,14 @@ namespace Beinet.cn.DrivingTest
                 foreach (var que in allQues)
                 {
                     arrIdx.Add(int.Parse(que));
+                }
+                answeringNum = arrIdx.Count;
+                if (answeringNum < quesNum)
+                {
+                    for (var i = answeringNum; i < quesNum; i++)
+                    {
+                        arrIdx.Add(i);
+                    }
                 }
                 answeringNum = arrIdx.Count;
 
@@ -577,6 +588,7 @@ namespace Beinet.cn.DrivingTest
             {
                 pictureBox1.Visible = true;
                 var img = Image.FromFile(pic);
+                currentPic = pic;
                 pictureBox1.Image = img;
                 pictureBox1.Width = img.Width;
                 pictureBox1.Height = img.Height;
@@ -621,6 +633,11 @@ namespace Beinet.cn.DrivingTest
         }
         #endregion
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(currentPic))
+                Process.Start(currentPic);
+        }
         #endregion
     }
 }
