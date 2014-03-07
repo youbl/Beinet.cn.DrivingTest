@@ -273,7 +273,6 @@
             this.txtQuestion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtQuestion.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtQuestion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtQuestion.Location = new System.Drawing.Point(37, 9);
             this.txtQuestion.Multiline = true;
             this.txtQuestion.Name = "txtQuestion";
@@ -489,6 +488,7 @@
             this.Controls.Add(this.gpAnswer);
             this.Controls.Add(this.label9);
             this.KeyPreview = true;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "驾考科目一考题";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);

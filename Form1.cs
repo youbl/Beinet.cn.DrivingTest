@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -586,12 +588,7 @@ namespace Beinet.cn.DrivingTest
             }
             if (!string.IsNullOrEmpty(pic))
             {
-                pictureBox1.Visible = true;
-                var img = Image.FromFile(pic);
-                currentPic = pic;
-                pictureBox1.Image = img;
-                pictureBox1.Width = img.Width;
-                pictureBox1.Height = img.Height;
+                ShowImg(pictureBox1, pic);
             }
             txtQuestion.Text = arr[0];
             currentAnswer = int.Parse(arr[2]);
@@ -638,6 +635,87 @@ namespace Beinet.cn.DrivingTest
             if (!string.IsNullOrEmpty(currentPic))
                 Process.Start(currentPic);
         }
+
+        // 图片的最大宽高
+        private const int _width = 400;
+        private const int _height = 410;
+
+        void ShowImg(PictureBox pictureBox, string picPath)
+        {
+            currentPic = picPath;
+            int width, height;
+            using (Bitmap originBmp = new Bitmap(picPath))
+            {
+                //var originBmp = Image.FromFile(picPath);
+                width = originBmp.Width;
+                height = originBmp.Height;
+                if (width > _width || height > _height)
+                {
+                    float div;
+                    int difW = width - _width;
+                    int difH = height - _height;
+                    if (difW > difH)
+                    {
+                        div = (float)_width / width;
+                    }
+                    else
+                    {
+                        div = (float)_height / height;
+                    }
+                    width = (int)Math.Floor(width * div);
+                    height = (int)Math.Floor(height * div);
+                }
+                pictureBox.Visible = true;
+                pictureBox.Width = width;
+                pictureBox.Height = height;
+
+                // 不能dispose，会导致PictureBox崩溃
+                Bitmap resizedBmp = new Bitmap(width, height);
+                //using (Bitmap resizedBmp = new Bitmap(width, height))
+                using (Graphics g = Graphics.FromImage(resizedBmp))
+                {
+                    //设置高质量插值法   
+                    g.InterpolationMode = InterpolationMode.High;
+                    //设置高质量,低速度呈现平滑程度   
+                    g.SmoothingMode = SmoothingMode.HighQuality;
+                    g.CompositingQuality = CompositingQuality.HighQuality;
+                    //消除锯齿 
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                    g.DrawImage(originBmp, new Rectangle(0, 0, width, height),
+                        new Rectangle(0, 0, originBmp.Width, originBmp.Height),
+                        GraphicsUnit.Pixel);
+                    //resizedBmp.Save(reSizePicPath, format);
+                    pictureBox.Image = resizedBmp;
+                }
+            }
+        }
+
+        /// <summary> 
+        /// 放大缩小图片尺寸 
+        /// </summary> 
+        /// <param name="picPath"></param> 
+        /// <param name="h"></param> 
+        /// <param name="w"></param> 
+        /// <param name="format"></param> 
+        public static void PicReSize(string picPath, int h, int w, ImageFormat format)
+        {
+            using(Bitmap resizedBmp = new Bitmap(w, h))
+            using (Graphics g = Graphics.FromImage(resizedBmp))
+            using (Bitmap originBmp = new Bitmap(picPath))
+            {
+                //设置高质量插值法   
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
+                //设置高质量,低速度呈现平滑程度   
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                //消除锯齿 
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.DrawImage(originBmp, new Rectangle(0, 0, w, h), new Rectangle(0, 0, originBmp.Width, originBmp.Height),
+                    GraphicsUnit.Pixel);
+                //resizedBmp.Save(reSizePicPath, format);
+            }
+        }
+
         #endregion
     }
 }
