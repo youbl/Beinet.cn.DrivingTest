@@ -73,10 +73,16 @@ namespace DrivingTest
 
                 var quesimg = string.Empty;             // 问题图片列表
 
-                if (!string.IsNullOrEmpty(question.imageurl))
+                if (!string.IsNullOrEmpty(question.imageurl))//question.imageurl
                 {
+                    // 大图
+                    //http://ww3.sinaimg.cn/mw600/5eb4d75agw1e2918wh62bj.jpg
+                    // 小图
+                    //http://ww3.sinaimg.cn/mw240/5eb4d75agw1e2918wh62bj.jpg
+
+                    string bigUrl = "http://ww3.sinaimg.cn/mw600/" + question.sinaimg;
                     // 问题包括图片时，下载
-                    var tmp = DownImgs(question.imageurl);
+                    var tmp = DownImgs(bigUrl, i);//(question.imageurl);
                     quesimg += tmp;
                 }
 
@@ -118,10 +124,10 @@ namespace DrivingTest
             textBox1.Text = "全部完成";
         }
 
-        string DownImgs(string imeurl)
+        string DownImgs(string imeurl, int id)
         {
             string ret = string.Empty;
-            var imgname = imeurl.Substring(imeurl.LastIndexOf('/') + 1);
+            var imgname = id.ToString() + imeurl.Substring(imeurl.LastIndexOf('.'));
             var imgfile = fileName + imgname;
             if (!File.Exists(imgfile))
                 DownloadFile(imeurl, imgfile, ref _cookie);
@@ -396,7 +402,7 @@ namespace DrivingTest
             [DataMember(EmitDefaultValue = false, IsRequired = false)]
             public string Type { get; set; }
             /// <summary>
-            /// 图片缓存
+            /// 新浪图片
             /// </summary>
             [DataMember(EmitDefaultValue = false, IsRequired = false)]
             public string sinaimg { get; set; }
