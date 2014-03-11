@@ -39,11 +39,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labErr = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt1AnswerDesc = new System.Windows.Forms.TextBox();
             this.btnRandom = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnOrder = new System.Windows.Forms.Button();
             this.labPer = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.chkAutoNext = new System.Windows.Forms.CheckBox();
@@ -64,8 +64,28 @@
             this.btnHisLoad = new System.Windows.Forms.Button();
             this.btnHisDel = new System.Windows.Forms.Button();
             this.btnHisClear = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabExam = new System.Windows.Forms.TabPage();
+            this.btnLast = new System.Windows.Forms.Button();
+            this.tabAnswered = new System.Windows.Forms.TabPage();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btn2Last = new System.Windows.Forms.Button();
+            this.btn2Next = new System.Windows.Forms.Button();
+            this.txt2Question = new System.Windows.Forms.TextBox();
+            this.txt2AnswerDesc = new System.Windows.Forms.TextBox();
+            this.lab2Id = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rad2a4 = new System.Windows.Forms.RadioButton();
+            this.rad2a3 = new System.Windows.Forms.RadioButton();
+            this.rad2a2 = new System.Windows.Forms.RadioButton();
+            this.rad2a1 = new System.Windows.Forms.RadioButton();
             this.gpAnswer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabExam.SuspendLayout();
+            this.tabAnswered.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpAnswer
@@ -74,12 +94,12 @@
             this.gpAnswer.Controls.Add(this.rad3);
             this.gpAnswer.Controls.Add(this.rad2);
             this.gpAnswer.Controls.Add(this.rad1);
-            this.gpAnswer.Location = new System.Drawing.Point(12, 59);
+            this.gpAnswer.Location = new System.Drawing.Point(5, 52);
             this.gpAnswer.Name = "gpAnswer";
             this.gpAnswer.Size = new System.Drawing.Size(380, 156);
             this.gpAnswer.TabIndex = 27;
             this.gpAnswer.TabStop = false;
-            this.gpAnswer.Text = "答案选项";
+            this.gpAnswer.Text = "选项";
             // 
             // rad4
             // 
@@ -90,6 +110,7 @@
             this.rad4.TabIndex = 14;
             this.rad4.Text = "radioButton1";
             this.rad4.UseVisualStyleBackColor = true;
+            this.rad4.CheckedChanged += new System.EventHandler(this.rad_CheckedChanged);
             // 
             // rad3
             // 
@@ -100,6 +121,7 @@
             this.rad3.TabIndex = 13;
             this.rad3.Text = "radioButton1";
             this.rad3.UseVisualStyleBackColor = true;
+            this.rad3.CheckedChanged += new System.EventHandler(this.rad_CheckedChanged);
             // 
             // rad2
             // 
@@ -110,6 +132,7 @@
             this.rad2.TabIndex = 12;
             this.rad2.Text = "radioButton1";
             this.rad2.UseVisualStyleBackColor = true;
+            this.rad2.CheckedChanged += new System.EventHandler(this.rad_CheckedChanged);
             // 
             // rad1
             // 
@@ -120,11 +143,12 @@
             this.rad1.TabIndex = 11;
             this.rad1.Text = "radioButton1";
             this.rad1.UseVisualStyleBackColor = true;
+            this.rad1.CheckedChanged += new System.EventHandler(this.rad_CheckedChanged);
             // 
             // labSer
             // 
             this.labSer.AutoSize = true;
-            this.labSer.Location = new System.Drawing.Point(12, 8);
+            this.labSer.Location = new System.Drawing.Point(7, 8);
             this.labSer.Name = "labSer";
             this.labSer.Size = new System.Drawing.Size(29, 12);
             this.labSer.TabIndex = 26;
@@ -132,11 +156,10 @@
             // 
             // labRight
             // 
-            this.labRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labRight.AutoSize = true;
             this.labRight.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labRight.ForeColor = System.Drawing.Color.Red;
-            this.labRight.Location = new System.Drawing.Point(36, 220);
+            this.labRight.Location = new System.Drawing.Point(36, 217);
             this.labRight.Name = "labRight";
             this.labRight.Size = new System.Drawing.Size(26, 12);
             this.labRight.TabIndex = 25;
@@ -144,9 +167,8 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 220);
+            this.label1.Location = new System.Drawing.Point(5, 217);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 23;
@@ -154,11 +176,10 @@
             // 
             // labErr
             // 
-            this.labErr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labErr.AutoSize = true;
             this.labErr.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labErr.ForeColor = System.Drawing.Color.Red;
-            this.labErr.Location = new System.Drawing.Point(36, 241);
+            this.labErr.Location = new System.Drawing.Point(37, 244);
             this.labErr.Name = "labErr";
             this.labErr.Size = new System.Drawing.Size(26, 12);
             this.labErr.TabIndex = 24;
@@ -166,33 +187,32 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 241);
+            this.label3.Location = new System.Drawing.Point(6, 244);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 20;
             this.label3.Text = "错误：";
             // 
-            // textBox1
+            // txt1AnswerDesc
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.textBox1.Location = new System.Drawing.Point(8, 373);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.textBox1.Size = new System.Drawing.Size(384, 104);
-            this.textBox1.TabIndex = 10;
-            this.textBox1.Text = "答案说明";
+            this.txt1AnswerDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txt1AnswerDesc.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txt1AnswerDesc.Location = new System.Drawing.Point(8, 378);
+            this.txt1AnswerDesc.Multiline = true;
+            this.txt1AnswerDesc.Name = "txt1AnswerDesc";
+            this.txt1AnswerDesc.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.txt1AnswerDesc.Size = new System.Drawing.Size(384, 87);
+            this.txt1AnswerDesc.TabIndex = 10;
+            this.txt1AnswerDesc.Text = "答案说明";
             // 
             // btnRandom
             // 
-            this.btnRandom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRandom.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnRandom.Location = new System.Drawing.Point(267, 278);
+            this.btnRandom.Location = new System.Drawing.Point(159, 287);
             this.btnRandom.Name = "btnRandom";
-            this.btnRandom.Size = new System.Drawing.Size(119, 23);
+            this.btnRandom.Size = new System.Drawing.Size(122, 32);
             this.btnRandom.TabIndex = 9;
             this.btnRandom.Text = "重新开始随机答题";
             this.btnRandom.UseVisualStyleBackColor = true;
@@ -200,10 +220,10 @@
             // 
             // btnNext
             // 
-            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNext.Location = new System.Drawing.Point(267, 217);
+            this.btnNext.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnNext.Location = new System.Drawing.Point(286, 217);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(119, 42);
+            this.btnNext.Size = new System.Drawing.Size(99, 42);
             this.btnNext.TabIndex = 0;
             this.btnNext.Text = "下一题";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -214,31 +234,29 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Location = new System.Drawing.Point(398, 61);
+            this.pictureBox1.Location = new System.Drawing.Point(396, 58);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(402, 416);
+            this.pictureBox1.Size = new System.Drawing.Size(486, 404);
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // button2
+            // btnOrder
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(142, 278);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(119, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "重新开始顺序答题";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button1_Click);
+            this.btnOrder.Location = new System.Drawing.Point(19, 287);
+            this.btnOrder.Name = "btnOrder";
+            this.btnOrder.Size = new System.Drawing.Size(119, 32);
+            this.btnOrder.TabIndex = 8;
+            this.btnOrder.Text = "重新开始顺序答题";
+            this.btnOrder.UseVisualStyleBackColor = true;
+            this.btnOrder.Click += new System.EventHandler(this.button1_Click);
             // 
             // labPer
             // 
-            this.labPer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labPer.AutoSize = true;
             this.labPer.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labPer.ForeColor = System.Drawing.Color.Red;
-            this.labPer.Location = new System.Drawing.Point(47, 262);
+            this.labPer.Location = new System.Drawing.Point(47, 270);
             this.labPer.Name = "labPer";
             this.labPer.Size = new System.Drawing.Size(47, 12);
             this.labPer.TabIndex = 22;
@@ -246,9 +264,8 @@
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(5, 262);
+            this.label5.Location = new System.Drawing.Point(5, 270);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 17;
@@ -256,11 +273,10 @@
             // 
             // chkAutoNext
             // 
-            this.chkAutoNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkAutoNext.AutoSize = true;
             this.chkAutoNext.Checked = true;
             this.chkAutoNext.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAutoNext.Location = new System.Drawing.Point(144, 219);
+            this.chkAutoNext.Location = new System.Drawing.Point(144, 216);
             this.chkAutoNext.Name = "chkAutoNext";
             this.chkAutoNext.Size = new System.Drawing.Size(120, 16);
             this.chkAutoNext.TabIndex = 8;
@@ -277,7 +293,7 @@
             this.txtQuestion.Multiline = true;
             this.txtQuestion.Name = "txtQuestion";
             this.txtQuestion.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.txtQuestion.Size = new System.Drawing.Size(763, 46);
+            this.txtQuestion.Size = new System.Drawing.Size(847, 46);
             this.txtQuestion.TabIndex = 13;
             this.txtQuestion.TabStop = false;
             this.txtQuestion.Text = "显示问题";
@@ -290,9 +306,8 @@
             // 
             // labTime
             // 
-            this.labTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labTime.AutoSize = true;
-            this.labTime.Location = new System.Drawing.Point(103, 220);
+            this.labTime.Location = new System.Drawing.Point(103, 217);
             this.labTime.Name = "labTime";
             this.labTime.Size = new System.Drawing.Size(35, 12);
             this.labTime.TabIndex = 6;
@@ -300,9 +315,8 @@
             // 
             // label6
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(71, 220);
+            this.label6.Location = new System.Drawing.Point(71, 217);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 12);
             this.label6.TabIndex = 16;
@@ -310,23 +324,21 @@
             // 
             // btnErr
             // 
-            this.btnErr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnErr.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnErr.Location = new System.Drawing.Point(267, 345);
+            this.btnErr.Location = new System.Drawing.Point(287, 353);
             this.btnErr.Name = "btnErr";
-            this.btnErr.Size = new System.Drawing.Size(119, 23);
+            this.btnErr.Size = new System.Drawing.Size(99, 23);
             this.btnErr.TabIndex = 6;
-            this.btnErr.Text = "复习本轮答错的题目";
+            this.btnErr.Text = "复习本轮错题";
             this.btnErr.UseVisualStyleBackColor = true;
             this.btnErr.Click += new System.EventHandler(this.button1_Click);
             // 
             // labLeft
             // 
-            this.labLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labLeft.AutoSize = true;
             this.labLeft.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labLeft.ForeColor = System.Drawing.Color.Red;
-            this.labLeft.Location = new System.Drawing.Point(60, 283);
+            this.labLeft.Location = new System.Drawing.Point(165, 270);
             this.labLeft.Name = "labLeft";
             this.labLeft.Size = new System.Drawing.Size(26, 12);
             this.labLeft.TabIndex = 7;
@@ -334,9 +346,8 @@
             // 
             // label7
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 283);
+            this.label7.Location = new System.Drawing.Point(111, 270);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 12);
             this.label7.TabIndex = 14;
@@ -344,8 +355,7 @@
             // 
             // txtBegin
             // 
-            this.txtBegin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtBegin.Location = new System.Drawing.Point(133, 238);
+            this.txtBegin.Location = new System.Drawing.Point(133, 235);
             this.txtBegin.Name = "txtBegin";
             this.txtBegin.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtBegin.Size = new System.Drawing.Size(35, 21);
@@ -354,8 +364,7 @@
             // 
             // txtEnd
             // 
-            this.txtEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtEnd.Location = new System.Drawing.Point(192, 238);
+            this.txtEnd.Location = new System.Drawing.Point(192, 235);
             this.txtEnd.Name = "txtEnd";
             this.txtEnd.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtEnd.Size = new System.Drawing.Size(42, 21);
@@ -364,9 +373,8 @@
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(73, 241);
+            this.label4.Location = new System.Drawing.Point(73, 238);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 19;
@@ -374,9 +382,8 @@
             // 
             // label8
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(174, 241);
+            this.label8.Location = new System.Drawing.Point(174, 238);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(17, 12);
             this.label8.TabIndex = 18;
@@ -384,12 +391,11 @@
             // 
             // btnTest
             // 
-            this.btnTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnTest.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnTest.ForeColor = System.Drawing.Color.Firebrick;
-            this.btnTest.Location = new System.Drawing.Point(267, 313);
+            this.btnTest.Location = new System.Drawing.Point(287, 323);
             this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(119, 23);
+            this.btnTest.Size = new System.Drawing.Size(99, 23);
             this.btnTest.TabIndex = 3;
             this.btnTest.Text = "考试测验";
             this.btnTest.UseVisualStyleBackColor = true;
@@ -397,20 +403,18 @@
             // 
             // lstHis
             // 
-            this.lstHis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lstHis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.lstHis.FormattingEnabled = true;
-            this.lstHis.Location = new System.Drawing.Point(62, 318);
+            this.lstHis.Location = new System.Drawing.Point(62, 323);
             this.lstHis.Name = "lstHis";
-            this.lstHis.Size = new System.Drawing.Size(199, 20);
+            this.lstHis.Size = new System.Drawing.Size(219, 20);
             this.lstHis.TabIndex = 0;
             this.lstHis.TabStop = false;
             // 
             // label9
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(4, 322);
+            this.label9.Location = new System.Drawing.Point(4, 327);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(65, 12);
             this.label9.TabIndex = 15;
@@ -418,8 +422,7 @@
             // 
             // btnHisLoad
             // 
-            this.btnHisLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnHisLoad.Location = new System.Drawing.Point(17, 344);
+            this.btnHisLoad.Location = new System.Drawing.Point(17, 352);
             this.btnHisLoad.Name = "btnHisLoad";
             this.btnHisLoad.Size = new System.Drawing.Size(69, 23);
             this.btnHisLoad.TabIndex = 12;
@@ -430,8 +433,7 @@
             // 
             // btnHisDel
             // 
-            this.btnHisDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnHisDel.Location = new System.Drawing.Point(95, 344);
+            this.btnHisDel.Location = new System.Drawing.Point(95, 352);
             this.btnHisDel.Name = "btnHisDel";
             this.btnHisDel.Size = new System.Drawing.Size(73, 23);
             this.btnHisDel.TabIndex = 11;
@@ -442,8 +444,7 @@
             // 
             // btnHisClear
             // 
-            this.btnHisClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnHisClear.Location = new System.Drawing.Point(176, 344);
+            this.btnHisClear.Location = new System.Drawing.Point(176, 352);
             this.btnHisClear.Name = "btnHisClear";
             this.btnHisClear.Size = new System.Drawing.Size(85, 23);
             this.btnHisClear.TabIndex = 10;
@@ -452,41 +453,214 @@
             this.btnHisClear.UseVisualStyleBackColor = true;
             this.btnHisClear.Click += new System.EventHandler(this.btnHisClear_Click);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabExam);
+            this.tabControl1.Controls.Add(this.tabAnswered);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(896, 494);
+            this.tabControl1.TabIndex = 28;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            // 
+            // tabExam
+            // 
+            this.tabExam.Controls.Add(this.txtQuestion);
+            this.tabExam.Controls.Add(this.gpAnswer);
+            this.tabExam.Controls.Add(this.pictureBox1);
+            this.tabExam.Controls.Add(this.labTime);
+            this.tabExam.Controls.Add(this.labLeft);
+            this.tabExam.Controls.Add(this.labPer);
+            this.tabExam.Controls.Add(this.labErr);
+            this.tabExam.Controls.Add(this.labRight);
+            this.tabExam.Controls.Add(this.lstHis);
+            this.tabExam.Controls.Add(this.txtEnd);
+            this.tabExam.Controls.Add(this.txtBegin);
+            this.tabExam.Controls.Add(this.chkAutoNext);
+            this.tabExam.Controls.Add(this.btnHisClear);
+            this.tabExam.Controls.Add(this.btnHisDel);
+            this.tabExam.Controls.Add(this.btnHisLoad);
+            this.tabExam.Controls.Add(this.btnLast);
+            this.tabExam.Controls.Add(this.btnNext);
+            this.tabExam.Controls.Add(this.btnErr);
+            this.tabExam.Controls.Add(this.btnOrder);
+            this.tabExam.Controls.Add(this.btnTest);
+            this.tabExam.Controls.Add(this.btnRandom);
+            this.tabExam.Controls.Add(this.txt1AnswerDesc);
+            this.tabExam.Controls.Add(this.label7);
+            this.tabExam.Controls.Add(this.label6);
+            this.tabExam.Controls.Add(this.label5);
+            this.tabExam.Controls.Add(this.label8);
+            this.tabExam.Controls.Add(this.label4);
+            this.tabExam.Controls.Add(this.label3);
+            this.tabExam.Controls.Add(this.label1);
+            this.tabExam.Controls.Add(this.labSer);
+            this.tabExam.Controls.Add(this.label9);
+            this.tabExam.Location = new System.Drawing.Point(4, 22);
+            this.tabExam.Name = "tabExam";
+            this.tabExam.Padding = new System.Windows.Forms.Padding(3);
+            this.tabExam.Size = new System.Drawing.Size(888, 468);
+            this.tabExam.TabIndex = 0;
+            this.tabExam.Text = "考试";
+            this.tabExam.UseVisualStyleBackColor = true;
+            // 
+            // btnLast
+            // 
+            this.btnLast.Location = new System.Drawing.Point(286, 270);
+            this.btnLast.Name = "btnLast";
+            this.btnLast.Size = new System.Drawing.Size(99, 37);
+            this.btnLast.TabIndex = 0;
+            this.btnLast.Text = "上一题";
+            this.btnLast.UseVisualStyleBackColor = true;
+            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
+            // 
+            // tabAnswered
+            // 
+            this.tabAnswered.Controls.Add(this.pictureBox2);
+            this.tabAnswered.Controls.Add(this.btn2Last);
+            this.tabAnswered.Controls.Add(this.btn2Next);
+            this.tabAnswered.Controls.Add(this.txt2Question);
+            this.tabAnswered.Controls.Add(this.txt2AnswerDesc);
+            this.tabAnswered.Controls.Add(this.lab2Id);
+            this.tabAnswered.Controls.Add(this.groupBox1);
+            this.tabAnswered.Location = new System.Drawing.Point(4, 22);
+            this.tabAnswered.Name = "tabAnswered";
+            this.tabAnswered.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAnswered.Size = new System.Drawing.Size(888, 468);
+            this.tabAnswered.TabIndex = 1;
+            this.tabAnswered.Text = "已答题目回顾";
+            this.tabAnswered.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox2.Location = new System.Drawing.Point(398, 59);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(486, 404);
+            this.pictureBox2.TabIndex = 39;
+            this.pictureBox2.TabStop = false;
+            // 
+            // btn2Last
+            // 
+            this.btn2Last.Location = new System.Drawing.Point(18, 219);
+            this.btn2Last.Name = "btn2Last";
+            this.btn2Last.Size = new System.Drawing.Size(119, 42);
+            this.btn2Last.TabIndex = 29;
+            this.btn2Last.Text = "前一题";
+            this.btn2Last.UseVisualStyleBackColor = true;
+            // 
+            // btn2Next
+            // 
+            this.btn2Next.Location = new System.Drawing.Point(267, 220);
+            this.btn2Next.Name = "btn2Next";
+            this.btn2Next.Size = new System.Drawing.Size(119, 42);
+            this.btn2Next.TabIndex = 29;
+            this.btn2Next.Text = "后一题";
+            this.btn2Next.UseVisualStyleBackColor = true;
+            // 
+            // txt2Question
+            // 
+            this.txt2Question.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt2Question.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txt2Question.Location = new System.Drawing.Point(37, 7);
+            this.txt2Question.Multiline = true;
+            this.txt2Question.Name = "txt2Question";
+            this.txt2Question.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.txt2Question.Size = new System.Drawing.Size(847, 46);
+            this.txt2Question.TabIndex = 44;
+            this.txt2Question.TabStop = false;
+            this.txt2Question.Text = "显示问题";
+            // 
+            // txt2AnswerDesc
+            // 
+            this.txt2AnswerDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txt2AnswerDesc.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txt2AnswerDesc.Location = new System.Drawing.Point(8, 268);
+            this.txt2AnswerDesc.Multiline = true;
+            this.txt2AnswerDesc.Name = "txt2AnswerDesc";
+            this.txt2AnswerDesc.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.txt2AnswerDesc.Size = new System.Drawing.Size(384, 195);
+            this.txt2AnswerDesc.TabIndex = 41;
+            this.txt2AnswerDesc.Text = "答案说明";
+            // 
+            // lab2Id
+            // 
+            this.lab2Id.AutoSize = true;
+            this.lab2Id.Location = new System.Drawing.Point(7, 6);
+            this.lab2Id.Name = "lab2Id";
+            this.lab2Id.Size = new System.Drawing.Size(29, 12);
+            this.lab2Id.TabIndex = 56;
+            this.lab2Id.Text = "725.";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rad2a4);
+            this.groupBox1.Controls.Add(this.rad2a3);
+            this.groupBox1.Controls.Add(this.rad2a2);
+            this.groupBox1.Controls.Add(this.rad2a1);
+            this.groupBox1.Location = new System.Drawing.Point(12, 57);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(380, 156);
+            this.groupBox1.TabIndex = 57;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "答案选项";
+            // 
+            // rad2a4
+            // 
+            this.rad2a4.AutoSize = true;
+            this.rad2a4.Enabled = false;
+            this.rad2a4.Location = new System.Drawing.Point(6, 123);
+            this.rad2a4.Name = "rad2a4";
+            this.rad2a4.Size = new System.Drawing.Size(95, 16);
+            this.rad2a4.TabIndex = 14;
+            this.rad2a4.Text = "radioButton1";
+            this.rad2a4.UseVisualStyleBackColor = true;
+            // 
+            // rad2a3
+            // 
+            this.rad2a3.AutoSize = true;
+            this.rad2a3.Enabled = false;
+            this.rad2a3.Location = new System.Drawing.Point(6, 90);
+            this.rad2a3.Name = "rad2a3";
+            this.rad2a3.Size = new System.Drawing.Size(95, 16);
+            this.rad2a3.TabIndex = 13;
+            this.rad2a3.Text = "radioButton1";
+            this.rad2a3.UseVisualStyleBackColor = true;
+            // 
+            // rad2a2
+            // 
+            this.rad2a2.AutoSize = true;
+            this.rad2a2.Enabled = false;
+            this.rad2a2.Location = new System.Drawing.Point(6, 57);
+            this.rad2a2.Name = "rad2a2";
+            this.rad2a2.Size = new System.Drawing.Size(95, 16);
+            this.rad2a2.TabIndex = 12;
+            this.rad2a2.Text = "radioButton1";
+            this.rad2a2.UseVisualStyleBackColor = true;
+            // 
+            // rad2a1
+            // 
+            this.rad2a1.AutoSize = true;
+            this.rad2a1.Enabled = false;
+            this.rad2a1.Location = new System.Drawing.Point(6, 24);
+            this.rad2a1.Name = "rad2a1";
+            this.rad2a1.Size = new System.Drawing.Size(95, 16);
+            this.rad2a1.TabIndex = 11;
+            this.rad2a1.Text = "radioButton1";
+            this.rad2a1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 489);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.labTime);
-            this.Controls.Add(this.labLeft);
-            this.Controls.Add(this.labPer);
-            this.Controls.Add(this.labErr);
-            this.Controls.Add(this.labRight);
-            this.Controls.Add(this.lstHis);
-            this.Controls.Add(this.txtEnd);
-            this.Controls.Add(this.txtBegin);
-            this.Controls.Add(this.chkAutoNext);
-            this.Controls.Add(this.btnHisClear);
-            this.Controls.Add(this.btnHisDel);
-            this.Controls.Add(this.btnHisLoad);
-            this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.btnErr);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.btnTest);
-            this.Controls.Add(this.btnRandom);
-            this.Controls.Add(this.txtQuestion);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.labSer);
-            this.Controls.Add(this.gpAnswer);
-            this.Controls.Add(this.label9);
+            this.ClientSize = new System.Drawing.Size(896, 494);
+            this.Controls.Add(this.tabControl1);
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -495,8 +669,15 @@
             this.gpAnswer.ResumeLayout(false);
             this.gpAnswer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabExam.ResumeLayout(false);
+            this.tabExam.PerformLayout();
+            this.tabAnswered.ResumeLayout(false);
+            this.tabAnswered.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -508,7 +689,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labErr;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt1AnswerDesc;
         private System.Windows.Forms.Button btnRandom;
         private System.Windows.Forms.RadioButton rad4;
         private System.Windows.Forms.RadioButton rad3;
@@ -516,7 +697,7 @@
         private System.Windows.Forms.RadioButton rad1;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnOrder;
         private System.Windows.Forms.Label labPer;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox chkAutoNext;
@@ -537,6 +718,21 @@
         private System.Windows.Forms.Button btnHisLoad;
         private System.Windows.Forms.Button btnHisDel;
         private System.Windows.Forms.Button btnHisClear;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabExam;
+        private System.Windows.Forms.TabPage tabAnswered;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button btn2Next;
+        private System.Windows.Forms.TextBox txt2Question;
+        private System.Windows.Forms.TextBox txt2AnswerDesc;
+        private System.Windows.Forms.Label lab2Id;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rad2a4;
+        private System.Windows.Forms.RadioButton rad2a3;
+        private System.Windows.Forms.RadioButton rad2a2;
+        private System.Windows.Forms.RadioButton rad2a1;
+        private System.Windows.Forms.Button btn2Last;
+        private System.Windows.Forms.Button btnLast;
 
     }
 }

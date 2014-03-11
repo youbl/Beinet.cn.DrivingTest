@@ -14,13 +14,33 @@ using Beinet.cn.DrivingTest;
 
 namespace DrivingTest
 {
+    /// <summary>
+    /// 抓取考试题目的代码窗体
+    /// </summary>
     public partial class GetQuestion : Form
     {
-        // 抓取考试题目的代码
+        #region 属性与变量
+        /// <summary>
+        /// 考试题目所在目录和图片
+        /// </summary>
+        internal static readonly string QuestionDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"jk\");//@"e:\jk\{0}";
+        /// <summary>
+        /// 默认的保存编码格式
+        /// </summary>
+        internal static Encoding GB2312 = Encoding.GetEncoding("GB2312");
+        /// <summary>
+        /// 考题里的分隔符，必须与抓取程序一致
+        /// </summary>
+        internal const string SPLIT_STR = "======================";
+        /// <summary>
+        /// C1驾照的题目总数,如果要包含大型车，请改成2540题，再去抓取题目
+        /// </summary>
+        internal const int QUESTION_NUM = 973;// 2011年C1考题总数是725;    
+        /// <summary>
+        /// 访问网络用的Cookie容器
+        /// </summary>
+        internal static CookieContainer Cookies = new CookieContainer();
 
-        readonly string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"jk\");//@"e:\jk\{0}";
-        private const string split = "======================";
-        private CookieContainer _cookie;
 
         // 2013年以前的url地址
         //private const string _starturl = "http://wz.jxedt.com/test/201004abcd/201004-sxtest.asp?type=c";
@@ -30,25 +50,23 @@ namespace DrivingTest
         private const string _quesurl =
             "http://wz.jxedt.com/test/2014abcd/ajax.asp?r=0.555714223572155&index={0}";
 
-
-        Encoding enc = Encoding.GetEncoding("GB2312");
-        private const int quesNum = Form1.quesNum;
+        #endregion
 
         public GetQuestion()
         {
             InitializeComponent();
 
-            if (!Directory.Exists(fileName))
+            if (!Directory.Exists(QuestionDir))
             {
-                Directory.CreateDirectory(fileName);
+                Directory.CreateDirectory(QuestionDir);
             }
             bool isok;
             // 得到Cookie
-            GetPage(_starturl, out isok, ref _cookie, encoding: enc);
-            for (int i = 1; i <= quesNum; i++)
+            GetPage(_starturl, out isok, Cookies, encoding: GB2312);
+            for (int i = 1; i <= Form1.QUESTION_NUM; i++)
             {
                 var url = string.Format(_quesurl, i);
-                var html = GetPage(url, out isok, ref _cookie, encoding: enc);
+                var html = GetPage(url, out isok, Cookies, encoding: GB2312);
                 if (!isok)
                 {
                     textBox1.Text = html;
@@ -86,11 +104,11 @@ namespace DrivingTest
                     quesimg += tmp;
                 }
 
-                string rightAnswer = question.ta;       // 答案序号
-                if (rightAnswer.Length > 1)
-                {
-                    // 用于断点，判断有没有多选题用
-                }
+                int rightAnswer = question.ta;       // 答案序号
+                //if (rightAnswer.Length > 1)
+                //{
+                //    // 用于断点，判断有没有多选题用
+                //}
 
                 List<string> answerOpn = new List<string>();
                 // 答案选项
@@ -103,20 +121,20 @@ namespace DrivingTest
 
                 var rightAnswerDesc = question.bestanswer;   // 答案简要说明
 
-                var file = fileName + i.ToString() + ".txt";
-                using (var sw = new StreamWriter(file, false, enc))
+                var file = QuestionDir + i.ToString() + ".txt";
+                using (var sw = new StreamWriter(file, false, GB2312))
                 {
                     sw.WriteLine(question.question);            // 问题
-                    sw.WriteLine(split);
+                    sw.WriteLine(Form1.SPLIT_STR);
                     sw.WriteLine(quesimg);          // 问题图片列表，以逗号分隔
-                    sw.WriteLine(split);
+                    sw.WriteLine(Form1.SPLIT_STR);
                     sw.WriteLine(rightAnswer);      // 答案序号
-                    sw.WriteLine(split);
+                    sw.WriteLine(Form1.SPLIT_STR);
                     sw.WriteLine(rightAnswerDesc);  // 答案简要说明
 
                     foreach (var opn in answerOpn)
                     {
-                        sw.WriteLine(split);
+                        sw.WriteLine(Form1.SPLIT_STR);
                         sw.WriteLine(opn);  // 答案选项
                     }
                 }
@@ -128,9 +146,9 @@ namespace DrivingTest
         {
             string ret = string.Empty;
             var imgname = id.ToString() + imeurl.Substring(imeurl.LastIndexOf('.'));
-            var imgfile = fileName + imgname;
+            var imgfile = QuestionDir + imgname;
             if (!File.Exists(imgfile))
-                DownloadFile(imeurl, imgfile, ref _cookie);
+                DownloadFile(imeurl, imgfile, Cookies);
             ret += imgname + ",";
             return ret;
         }
@@ -149,7 +167,7 @@ namespace DrivingTest
         /// <param name="userName">网页登录名</param>
         /// <param name="password">登录密码</param>
         /// <returns></returns>
-        static string GetPage(string url, out bool isok, ref CookieContainer cookieContainer, 
+        static string GetPage(string url, out bool isok, CookieContainer cookieContainer, 
             string param = null, string HttpMethod = null, 
             Encoding encoding = null,
             bool showHeader = false, string userName = null, string password = null)
@@ -188,8 +206,6 @@ namespace DrivingTest
                 request.Credentials = new NetworkCredential(userName, password);
 
             #region 加Cookie
-            if (cookieContainer == null)
-                cookieContainer = new CookieContainer();
             request.CookieContainer = cookieContainer;
             //            request.CookieContainer.SetCookies(new Uri(url), "aaa=bbb&ccc=ddd");// 必须一次全部加入Cookie
             #endregion
@@ -290,7 +306,7 @@ namespace DrivingTest
         /// <param name="downloadUrl"></param>
         /// <param name="savePath"></param>
         /// <param name="cookieContainer"></param>
-        void DownloadFile(string downloadUrl, string savePath, ref CookieContainer cookieContainer)
+        void DownloadFile(string downloadUrl, string savePath, CookieContainer cookieContainer)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(downloadUrl);
             request.AllowAutoRedirect = true;
@@ -355,60 +371,5 @@ namespace DrivingTest
                 return obj;
             }
         }
-
-        [DataContract]
-        class Question
-        {
-// ReSharper disable UnusedMember.Local
-// ReSharper disable UnusedAutoPropertyAccessor.Local
-            [DataMember(EmitDefaultValue = false, IsRequired = false)]
-            public int id { get; set; }
-            /// <summary>
-            /// 问题
-            /// </summary>
-            [DataMember(EmitDefaultValue = false, IsRequired = false)]
-            public string question { get; set; }
-            [DataMember(EmitDefaultValue = false, IsRequired = false)]
-            public string a { get; set; }
-            [DataMember(EmitDefaultValue = false, IsRequired = false)]
-            public string b { get; set; }
-            [DataMember(EmitDefaultValue = false, IsRequired = false)]
-            public string c { get; set; }
-            [DataMember(EmitDefaultValue = false, IsRequired = false)]
-            public string d { get; set; }
-            /// <summary>
-            /// 正确答案
-            /// </summary>
-            [DataMember(EmitDefaultValue = false, IsRequired = false)]
-            public string ta { get; set; }
-            /// <summary>
-            /// 题目用到的图片（可能是swf）
-            /// </summary>
-            [DataMember(EmitDefaultValue = false, IsRequired = false)]
-            public string imageurl { get; set; }
-            /// <summary>
-            /// 答案解答
-            /// </summary>
-            [DataMember(EmitDefaultValue = false, IsRequired = false)]
-            public string bestanswer { get; set; }
-            /// <summary>
-            /// 答案解答网页连接id，"http://tieba.jxedt.com/posts_" + bestanswerid + ".html"
-            /// </summary>
-            [DataMember(EmitDefaultValue = false, IsRequired = false)]
-            public string bestanswerid { get; set; }
-            /// <summary>
-            /// 等于1表示判断题，等于2表示4选1，等于3表示4选多，多选题
-            /// </summary>
-            [DataMember(EmitDefaultValue = false, IsRequired = false)]
-            public string Type { get; set; }
-            /// <summary>
-            /// 新浪图片
-            /// </summary>
-            [DataMember(EmitDefaultValue = false, IsRequired = false)]
-            public string sinaimg { get; set; }
-// ReSharper restore UnusedMember.Local
-// ReSharper restore UnusedAutoPropertyAccessor.Local
-        }
-
     }
 }
