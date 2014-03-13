@@ -159,7 +159,7 @@
             this.labRight.AutoSize = true;
             this.labRight.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labRight.ForeColor = System.Drawing.Color.Red;
-            this.labRight.Location = new System.Drawing.Point(36, 217);
+            this.labRight.Location = new System.Drawing.Point(36, 251);
             this.labRight.Name = "labRight";
             this.labRight.Size = new System.Drawing.Size(26, 12);
             this.labRight.TabIndex = 25;
@@ -168,7 +168,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 217);
+            this.label1.Location = new System.Drawing.Point(5, 251);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 23;
@@ -179,7 +179,7 @@
             this.labErr.AutoSize = true;
             this.labErr.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labErr.ForeColor = System.Drawing.Color.Red;
-            this.labErr.Location = new System.Drawing.Point(37, 244);
+            this.labErr.Location = new System.Drawing.Point(37, 278);
             this.labErr.Name = "labErr";
             this.labErr.Size = new System.Drawing.Size(26, 12);
             this.labErr.TabIndex = 24;
@@ -188,7 +188,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 244);
+            this.label3.Location = new System.Drawing.Point(6, 278);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 20;
@@ -210,7 +210,7 @@
             // btnRandom
             // 
             this.btnRandom.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnRandom.Location = new System.Drawing.Point(159, 287);
+            this.btnRandom.Location = new System.Drawing.Point(263, 272);
             this.btnRandom.Name = "btnRandom";
             this.btnRandom.Size = new System.Drawing.Size(122, 32);
             this.btnRandom.TabIndex = 9;
@@ -221,9 +221,9 @@
             // btnNext
             // 
             this.btnNext.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnNext.Location = new System.Drawing.Point(286, 217);
+            this.btnNext.Location = new System.Drawing.Point(122, 208);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(99, 42);
+            this.btnNext.Size = new System.Drawing.Size(99, 39);
             this.btnNext.TabIndex = 0;
             this.btnNext.Text = "下一题";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -243,9 +243,9 @@
             // 
             // btnOrder
             // 
-            this.btnOrder.Location = new System.Drawing.Point(19, 287);
+            this.btnOrder.Location = new System.Drawing.Point(264, 236);
             this.btnOrder.Name = "btnOrder";
-            this.btnOrder.Size = new System.Drawing.Size(119, 32);
+            this.btnOrder.Size = new System.Drawing.Size(122, 32);
             this.btnOrder.TabIndex = 8;
             this.btnOrder.Text = "重新开始顺序答题";
             this.btnOrder.UseVisualStyleBackColor = true;
@@ -256,7 +256,7 @@
             this.labPer.AutoSize = true;
             this.labPer.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labPer.ForeColor = System.Drawing.Color.Red;
-            this.labPer.Location = new System.Drawing.Point(47, 270);
+            this.labPer.Location = new System.Drawing.Point(47, 304);
             this.labPer.Name = "labPer";
             this.labPer.Size = new System.Drawing.Size(47, 12);
             this.labPer.TabIndex = 22;
@@ -265,7 +265,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(5, 270);
+            this.label5.Location = new System.Drawing.Point(5, 304);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 17;
@@ -276,7 +276,7 @@
             this.chkAutoNext.AutoSize = true;
             this.chkAutoNext.Checked = true;
             this.chkAutoNext.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAutoNext.Location = new System.Drawing.Point(144, 216);
+            this.chkAutoNext.Location = new System.Drawing.Point(263, 214);
             this.chkAutoNext.Name = "chkAutoNext";
             this.chkAutoNext.Size = new System.Drawing.Size(120, 16);
             this.chkAutoNext.TabIndex = 8;
@@ -307,16 +307,18 @@
             // labTime
             // 
             this.labTime.AutoSize = true;
-            this.labTime.Location = new System.Drawing.Point(103, 217);
+            this.labTime.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labTime.ForeColor = System.Drawing.Color.Red;
+            this.labTime.Location = new System.Drawing.Point(168, 304);
             this.labTime.Name = "labTime";
-            this.labTime.Size = new System.Drawing.Size(35, 12);
+            this.labTime.Size = new System.Drawing.Size(61, 12);
             this.labTime.TabIndex = 6;
-            this.labTime.Text = "00:00";
+            this.labTime.Text = "00:00:00";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(71, 217);
+            this.label6.Location = new System.Drawing.Point(136, 304);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 12);
             this.label6.TabIndex = 16;
@@ -325,9 +327,9 @@
             // btnErr
             // 
             this.btnErr.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnErr.Location = new System.Drawing.Point(287, 353);
+            this.btnErr.Location = new System.Drawing.Point(287, 345);
             this.btnErr.Name = "btnErr";
-            this.btnErr.Size = new System.Drawing.Size(99, 23);
+            this.btnErr.Size = new System.Drawing.Size(99, 31);
             this.btnErr.TabIndex = 6;
             this.btnErr.Text = "复习本轮错题";
             this.btnErr.UseVisualStyleBackColor = true;
@@ -338,7 +340,7 @@
             this.labLeft.AutoSize = true;
             this.labLeft.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labLeft.ForeColor = System.Drawing.Color.Red;
-            this.labLeft.Location = new System.Drawing.Point(165, 270);
+            this.labLeft.Location = new System.Drawing.Point(132, 251);
             this.labLeft.Name = "labLeft";
             this.labLeft.Size = new System.Drawing.Size(26, 12);
             this.labLeft.TabIndex = 7;
@@ -347,7 +349,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(111, 270);
+            this.label7.Location = new System.Drawing.Point(78, 251);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 12);
             this.label7.TabIndex = 14;
@@ -355,7 +357,7 @@
             // 
             // txtBegin
             // 
-            this.txtBegin.Location = new System.Drawing.Point(133, 235);
+            this.txtBegin.Location = new System.Drawing.Point(134, 275);
             this.txtBegin.Name = "txtBegin";
             this.txtBegin.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtBegin.Size = new System.Drawing.Size(35, 21);
@@ -364,7 +366,7 @@
             // 
             // txtEnd
             // 
-            this.txtEnd.Location = new System.Drawing.Point(192, 235);
+            this.txtEnd.Location = new System.Drawing.Point(193, 275);
             this.txtEnd.Name = "txtEnd";
             this.txtEnd.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtEnd.Size = new System.Drawing.Size(42, 21);
@@ -374,7 +376,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(73, 238);
+            this.label4.Location = new System.Drawing.Point(74, 278);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 19;
@@ -383,7 +385,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(174, 238);
+            this.label8.Location = new System.Drawing.Point(175, 278);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(17, 12);
             this.label8.TabIndex = 18;
@@ -393,9 +395,9 @@
             // 
             this.btnTest.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnTest.ForeColor = System.Drawing.Color.Firebrick;
-            this.btnTest.Location = new System.Drawing.Point(287, 323);
+            this.btnTest.Location = new System.Drawing.Point(287, 309);
             this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(99, 23);
+            this.btnTest.Size = new System.Drawing.Size(99, 33);
             this.btnTest.TabIndex = 3;
             this.btnTest.Text = "考试测验";
             this.btnTest.UseVisualStyleBackColor = true;
@@ -467,33 +469,33 @@
             // 
             // tabExam
             // 
+            this.tabExam.Controls.Add(this.txtBegin);
             this.tabExam.Controls.Add(this.txtQuestion);
             this.tabExam.Controls.Add(this.gpAnswer);
             this.tabExam.Controls.Add(this.pictureBox1);
+            this.tabExam.Controls.Add(this.chkAutoNext);
             this.tabExam.Controls.Add(this.labTime);
+            this.tabExam.Controls.Add(this.btnRandom);
+            this.tabExam.Controls.Add(this.label4);
+            this.tabExam.Controls.Add(this.label6);
+            this.tabExam.Controls.Add(this.btnOrder);
+            this.tabExam.Controls.Add(this.label8);
             this.tabExam.Controls.Add(this.labLeft);
             this.tabExam.Controls.Add(this.labPer);
             this.tabExam.Controls.Add(this.labErr);
             this.tabExam.Controls.Add(this.labRight);
-            this.tabExam.Controls.Add(this.lstHis);
             this.tabExam.Controls.Add(this.txtEnd);
-            this.tabExam.Controls.Add(this.txtBegin);
-            this.tabExam.Controls.Add(this.chkAutoNext);
+            this.tabExam.Controls.Add(this.lstHis);
             this.tabExam.Controls.Add(this.btnHisClear);
             this.tabExam.Controls.Add(this.btnHisDel);
             this.tabExam.Controls.Add(this.btnHisLoad);
             this.tabExam.Controls.Add(this.btnLast);
             this.tabExam.Controls.Add(this.btnNext);
             this.tabExam.Controls.Add(this.btnErr);
-            this.tabExam.Controls.Add(this.btnOrder);
             this.tabExam.Controls.Add(this.btnTest);
-            this.tabExam.Controls.Add(this.btnRandom);
             this.tabExam.Controls.Add(this.txt1AnswerDesc);
             this.tabExam.Controls.Add(this.label7);
-            this.tabExam.Controls.Add(this.label6);
             this.tabExam.Controls.Add(this.label5);
-            this.tabExam.Controls.Add(this.label8);
-            this.tabExam.Controls.Add(this.label4);
             this.tabExam.Controls.Add(this.label3);
             this.tabExam.Controls.Add(this.label1);
             this.tabExam.Controls.Add(this.labSer);
@@ -508,9 +510,9 @@
             // 
             // btnLast
             // 
-            this.btnLast.Location = new System.Drawing.Point(286, 270);
+            this.btnLast.Location = new System.Drawing.Point(7, 211);
             this.btnLast.Name = "btnLast";
-            this.btnLast.Size = new System.Drawing.Size(99, 37);
+            this.btnLast.Size = new System.Drawing.Size(99, 34);
             this.btnLast.TabIndex = 0;
             this.btnLast.Text = "上一题";
             this.btnLast.UseVisualStyleBackColor = true;

@@ -132,6 +132,7 @@ namespace Beinet.cn.DrivingTest
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
+            _status.IsReviewWrong = false;
             if (sender == btnRandom) // 是否随机
             {
                 _status.ExamType = ExamType.Random;
@@ -373,7 +374,7 @@ namespace Beinet.cn.DrivingTest
                 labTime.Text = string.Format("{0:00}:{1:00}:{2:00}", hour, minute, second);
         }
 
-        #region 主要方法，判断对错，并保存当前回答
+        // 主要方法，判断对错，并保存当前回答
         /// <summary>
         /// 判断对错的
         /// </summary>
@@ -412,10 +413,10 @@ namespace Beinet.cn.DrivingTest
                 }
             }
             _status.Ques.Answer = myAnswer;
+            labPer.Text = (float.Parse(labRight.Text) * 100 / (_status.QuestionNum - int.Parse(labLeft.Text))).ToString("N1") + "%";
 
             if (_status.ExamType != ExamType.Examing) // 测验不显示说明
             {
-                labPer.Text = (float.Parse(labRight.Text) * 100 / (_status.QuestionNum - int.Parse(labLeft.Text))).ToString("N1") + "%";
                 txt1AnswerDesc.Text = currentQuestion.bestanswer;
             }
 
@@ -432,43 +433,57 @@ namespace Beinet.cn.DrivingTest
             }
             btnNext.Focus();
         }
-        #endregion
 
-        #region 主要方法，开始时的初始化
+        // 主要方法，开始时的初始化
         void init()
         {
             string saveFile = _status.SaveFile;
             // 开始新的一轮前，把当前轮的历史加入列表
             if (!string.IsNullOrEmpty(saveFile) && File.Exists(saveFile))
             {
-                lstHis.Items.Insert(0, GetListText(saveFile));
+                string showTxt = GetListText(saveFile);
+                if (!lstHis.Items.Contains(showTxt))
+                {
+                    lstHis.Items.Insert(0, GetListText(saveFile));
+                }
             }
 
             _status.IsAnsing = false;
 
-            // 初始化当前轮文件名（暂不保存到文件，开始回答后才保存）
-            saveFile = DateTime.Now.ToString("yyyy年MM月dd日HH点mm分ss秒");
-            if (_status.ExamType == ExamType.Examing)
+            if (!_status.IsReviewWrong)
             {
-                saveFile = "tst" + saveFile;
-            }
-            else if (_status.ExamType == ExamType.Random)
-            {
-                saveFile = "rnd" + saveFile;
-            }
-            else //if (_examType == ExamType.Default)
-            {
-                saveFile = "nor" + saveFile;
-            }
-            saveFile = Path.Combine(dirHistory, saveFile + ".log");
-            _status.SaveFile = saveFile;
+                // 初始化当前轮文件名（暂不保存到文件，开始回答后才保存）
+                saveFile = DateTime.Now.ToString("yyyy年MM月dd日HH点mm分ss秒");
+                if (_status.ExamType == ExamType.Examing)
+                {
+                    saveFile = "tst" + saveFile;
+                }
+                else if (_status.ExamType == ExamType.Random)
+                {
+                    saveFile = "rnd" + saveFile;
+                }
+                else //if (_examType == ExamType.Default)
+                {
+                    saveFile = "nor" + saveFile;
+                }
+                saveFile = Path.Combine(dirHistory, saveFile + ".log");
+                _status.SaveFile = saveFile;
 
-            //清空题目数组并重新填充
-            _status.AllQuestion.Clear();
+                //清空题目数组并重新填充
+                _status.AllQuestion.Clear();
+            }
+            else
+            {
+                var allWrong = _status.AllWrong.ToArray();
+                //清空题目数组并重新填充
+                _status.AllQuestion.Clear();
+                _status.AllQuestion.AddRange(allWrong);
+            }
+            
             _status.CurrentIdx = -1;
+
             if (_status.IsReviewWrong)
             {
-                _status.AllQuestion.AddRange(_status.AllWrong);
             }
             else if (_status.ExamType == ExamType.Examing)
             {
@@ -550,7 +565,6 @@ namespace Beinet.cn.DrivingTest
             labLeft.Text = _status.QuestionNum.ToString();
             txt1AnswerDesc.Text = string.Empty;
         }
-        #endregion
 
         // 主要方法，并显示下一题
         void ShowNext()
@@ -755,9 +769,9 @@ namespace Beinet.cn.DrivingTest
                 string line = sr.ReadLine();
 
                 // 第二行是考试类型
-                line = sr.ReadLine();
+                line = (sr.ReadLine() ?? string.Empty).Trim();
                 int typeInt;
-                if (line == null || !int.TryParse(line, out typeInt))
+                if (!int.TryParse(line, out typeInt))
                 {
                     return;
                 }
@@ -766,18 +780,18 @@ namespace Beinet.cn.DrivingTest
                 // 第3行开始，是回答完毕的用户答案情况
                 while (!sr.EndOfStream)
                 {
-                    line = sr.ReadLine();
-                    if (line == null)
+                    line = (sr.ReadLine() ?? string.Empty).Trim();
+                    if (line == string.Empty)
                     {
-                        return;
+                        continue;
                     }
 
                     var content = line.Split(','); //题号,回答,是否正确
-                    var quesId = int.Parse(content[0]);
+                    var quesId = int.Parse(content[0].Trim());
 
                     if (answeredIds.Add(quesId))
                     {
-                        var myAnswer = int.Parse(content[1]);
+                        var myAnswer = int.Parse(content[1].Trim());
                         Question question = LoadQuestion(quesId);
                         if (question == null)
                         {
